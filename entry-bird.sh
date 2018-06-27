@@ -27,12 +27,12 @@ run_bird() {
 	validate_input
 
 	printf ">>> bird configuration >>>>>>>>>>>>>>>>>\n"
-	[ -f /run/bird/bird.con ] && cp /run/bird/bird.conf /etc/bird/bird.conf
+	[ -f /conf/bird/bird.conf ] && cp /conf/bird/bird.conf /etc/bird/bird.conf
 	cat /etc/bird/bird.conf
 	printf "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n"
 
 	printf ">>> bird6 configuration >>>>>>>>>>>>>>>>>\n"
-	[ -f /run/bird/bird6.con ] && cp /run/bird/bird6.conf /etc/bird/bird6.conf
+	[ -f /conf/bird/bird6.conf ] && cp /conf/bird/bird6.conf /etc/bird/bird6.conf
 	cat /etc/bird/bird6.conf
 	printf "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n"
 
