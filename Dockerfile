@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 RUN apt-get update && \
     apt-get install -qy --no-install-recommends bird iputils-ping traceroute iproute2 less vim netcat curl
-RUN mkdir /run/bird /conf/bird
+RUN mkdir -p /run/bird /conf/bird
 
 ENV HOME /root
 WORKDIR /root
