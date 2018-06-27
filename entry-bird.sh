@@ -25,17 +25,35 @@ run_bird() {
 	set_defaults
 	echo "Validating input..."
 	validate_input
+
 	printf ">>> bird configuration >>>>>>>>>>>>>>>>>\n"
 	[ -f /run/bird/bird.con ] && cp /run/bird/bird.conf /etc/bird/bird.conf
 	cat /etc/bird/bird.conf
 	printf "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n"
 
-	trap term TERM
+	printf ">>> bird6 configuration >>>>>>>>>>>>>>>>>\n"
+	[ -f /run/bird/bird6.con ] && cp /run/bird/bird6.conf /etc/bird/bird6.conf
+	cat /etc/bird/bird6.conf
+	printf "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n"
+
+        echo "executing bird daemon..."
+        /usr/sbin/bird -c /etc/bird/bird.conf
+        sleep 1;
+        echo "executing bird6 daemon..."
+        /usr/sbin/bird6 -c /etc/bird/bird6.conf
+        sleep 1;
+
 	while true; do
-		echo "executing bird daemon..."
-		/usr/sbin/bird -c /etc/bird/bird.conf -f
-		sleep 3;
-		echo "reload..."
+                if ! pidof bird > /dev/null; then
+                        echo "Bird died. Terminating."
+                        exit 1
+                fi
+
+                if ! pidof bird6 > /dev/null; then
+                        echo "Bird6 died. Terminating."
+                        exit 1
+                fi
+                sleep 5
 	done
 }
 

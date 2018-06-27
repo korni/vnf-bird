@@ -8,7 +8,7 @@ FIB manipulation currently requires some capability:
 
 ### Configuration
 
-Configuration is done by supplying a bird.conf file
-in /run/bird/bird.conf. If no config file is supplied
+Configuration is done by supplying a bird.conf and/or bird6.conf
+file(s) in /run/bird. If a config file is not supplied
 on startup, a default one is used.
 
